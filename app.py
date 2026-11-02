@@ -1,4 +1,4 @@
-```python
+
 import json
 from html import escape
 from pathlib import Path
@@ -270,4 +270,4 @@ elif page=='Learning Roadmap': planned_page('Learning Roadmap','Follow a persona
 elif page=='Placement Drives': planned_page('Placement Drives','Explore relevant opportunities and track application deadlines.')
 else: planned_page('Settings','Manage your student profile and preferences.')
 
-st.markdown('<div style="text-align:center;color:#667286;font-size:10px;padding:24px 0">PrepPath · CareerPilot Placement Readiness Agent · Review prototype</div>',unsafe_allow_html=True)
+ 
