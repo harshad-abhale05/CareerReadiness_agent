@@ -1,138 +1,139 @@
 import json
 from pathlib import Path
-import streamlit as st
 import pandas as pd
+import streamlit as st
 
 ROOT = Path(__file__).parent
-with open(ROOT / "data" / "questions.json", encoding="utf-8") as f:
+with open(ROOT / 'data' / 'questions.json', encoding='utf-8') as f:
     QUESTIONS = json.load(f)
-with open(ROOT / "data" / "company_requirements.json", encoding="utf-8") as f:
+with open(ROOT / 'data' / 'company_requirements.json', encoding='utf-8') as f:
     COMPANIES = json.load(f)
 
-st.set_page_config(page_title="CareerPilot | Placement Readiness", page_icon="🎯", layout="wide")
-st.markdown("""
+st.set_page_config(page_title='CareerPilot | Placement Readiness', page_icon='🎓', layout='wide')
+st.markdown('''
 <style>
-.block-container {padding-top: 1.7rem; max-width: 1180px;}
-.hero {padding: 1.35rem 1.6rem; border-radius: 16px; background: linear-gradient(115deg,#10233f,#245b82); color:white; margin-bottom:1rem;}
-.hero h1 {color:white; margin:0; font-size:2.1rem;}
-.hero p {color:#dceaf5; margin:.35rem 0 0 0;}
-.small-note {font-size:.88rem; color:#6b7280;}
-div[data-testid="stMetric"] {background:#f5f8fc; padding:14px; border-radius:12px;}
+.stApp {background:linear-gradient(135deg,#f4f7ff 0%,#f8faff 55%,#f2f5ff 100%); color:#17213b;}
+[data-testid="stHeader"] {background:rgba(244,247,255,.88);}
+.block-container {padding-top:1.45rem; padding-bottom:2rem; max-width:1450px;}
+section[data-testid="stSidebar"] {background:linear-gradient(180deg,#17213f 0%,#101a35 100%); border-right:1px solid #26365e;}
+section[data-testid="stSidebar"] * {color:#f4f7ff !important;}
+.brand {text-align:center;padding:14px 6px 24px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,.13);}
+.brand-icon {font-size:2.7rem;}.brand-name {font-size:1.55rem;font-weight:800;}.brand-sub {color:#bdc9e8!important;font-size:.83rem;}
+.welcome {background:linear-gradient(110deg,#e6edff,#f4edff);border:1px solid #dce5ff;border-radius:20px;padding:23px 26px;margin-bottom:18px;}
+.welcome h1 {color:#142044;font-size:2rem;margin:0;}.welcome p {color:#53617f;margin:.35rem 0 0;}
+.metric-card {border:1px solid #e0e7fb;border-radius:17px;padding:17px 18px;min-height:130px;box-shadow:0 5px 18px rgba(45,65,120,.05);}
+.metric-label {color:#52617f;font-size:.82rem;letter-spacing:.04em;}.metric-value {color:#17213b;font-size:2rem;font-weight:800;margin-top:5px;}.metric-help {color:#64748b;font-size:.8rem;margin-top:3px;}
+.card {background:rgba(255,255,255,.94);border:1px solid #e2e8f5;border-radius:18px;padding:20px 22px;margin-bottom:16px;box-shadow:0 5px 20px rgba(45,65,120,.045);}
+.card h3 {color:#17213b;margin:0 0 5px;font-size:1.12rem;}.muted {color:#64748b;font-size:.88rem;}
+.pill {display:inline-block;border-radius:30px;padding:5px 11px;background:#e9efff;color:#315eea;font-size:.78rem;font-weight:700;}
+div.stButton>button[kind="primary"] {background:linear-gradient(90deg,#315eea,#694be8);border:0;border-radius:10px;color:white;}
+div[data-testid="stMetric"] {background:white;border:1px solid #e2e8f5;padding:14px;border-radius:14px;box-shadow:0 4px 14px rgba(45,65,120,.04);}
 </style>
-""", unsafe_allow_html=True)
+''', unsafe_allow_html=True)
 
-st.markdown('<div class="hero"><h1>🎯 CareerPilot</h1><p>AI-powered career and placement readiness — review MVP</p></div>', unsafe_allow_html=True)
-st.caption("Prototype build: assessment → evaluation → company-role comparison → personalized recommendations.")
+if 'answers' not in st.session_state: st.session_state.answers = {}
+if 'submitted' not in st.session_state: st.session_state.submitted = False
+if 'student' not in st.session_state: st.session_state.student = 'Demo Student'
+if 'company' not in st.session_state: st.session_state.company = list(COMPANIES)[0]
+if 'role' not in st.session_state: st.session_state.role = list(COMPANIES[st.session_state.company])[0]
+domains = list(dict.fromkeys(q['domain'] for q in QUESTIONS))
 
-tab1, tab2, tab3, tab4 = st.tabs(["Student Assessment", "Results & Skill Gaps", "Company Requirements API", "Project Architecture"])
+with st.sidebar:
+    st.markdown('''<div class="brand"><div class="brand-icon">🎓</div><div class="brand-name">CareerPilot</div><div class="brand-sub">Placement Readiness Agent</div></div>''', unsafe_allow_html=True)
+    page = st.radio('Navigation', ['Dashboard','Student Assessment','Results & Skill Gaps','Panel Members'], label_visibility='collapsed')
+    st.markdown('---')
+    st.caption('Built for student career readiness')
+    st.markdown(f"<div style='padding:10px 4px;color:#dbe5ff!important'>👤 {st.session_state.student}<br><span style='font-size:.78rem;color:#aebde0!important'>B.Tech CSE · Final Year</span></div>", unsafe_allow_html=True)
 
-domains = list(dict.fromkeys(q["domain"] for q in QUESTIONS))
-with tab1:
-    st.subheader("Student assessment")
-    c1,c2,c3 = st.columns(3)
-    student = c1.text_input("Student name", value="Demo Student")
-    company = c2.selectbox("Target company", list(COMPANIES.keys()))
-    role = c3.selectbox("Target role", list(COMPANIES[company].keys()))
-    st.info("For this review prototype, the assessment contains 40 MCQs (5 per domain). Each question carries 1 mark. No negative marking.")
-    if "answers" not in st.session_state: st.session_state.answers = {}
-    if "submitted" not in st.session_state: st.session_state.submitted = False
-    with st.form("assessment_form"):
-        for domain in domains:
-            st.markdown(f"### {domain}")
-            for q in [x for x in QUESTIONS if x["domain"] == domain]:
-                st.markdown(f"**{q['id']}. [{q['difficulty']}] {q['question']}**")
-                default = st.session_state.answers.get(q["id"], "— Select an answer —")
-                opts = ["— Select an answer —"] + q["options"]
-                ix = opts.index(default) if default in opts else 0
-                st.selectbox("Choose one", opts, index=ix, key=f"ans_{q['id']}", label_visibility="collapsed")
-        submitted = st.form_submit_button("Submit assessment", type="primary", use_container_width=True)
-    if submitted:
-        st.session_state.answers = {q["id"]: st.session_state.get(f"ans_{q['id']}", "— Select an answer —") for q in QUESTIONS}
-        st.session_state.submitted = True
-        st.session_state.student = student
-        st.session_state.company = company
-        st.session_state.role = role
-        st.success("Assessment submitted. Open the Results & Skill Gaps tab.")
-with tab2:
-    st.subheader("Evaluation and skill-gap report")
-    if not st.session_state.get("submitted"):
-        st.warning("Submit the assessment first. You can use the preloaded demo result below to inspect the reporting logic.")
-        demo = st.button("Load demo assessment result")
-    else: demo = False
-    if st.session_state.get("submitted") or demo:
-        if demo:
-            ans = {q["id"]: q["correct_answer"] if i % 3 != 0 else q["options"][0] for i,q in enumerate(QUESTIONS)}
-            target_company, target_role, name = "Google", "Software Development Engineer", "Demo Student"
-        else:
-            ans = st.session_state.answers
-            target_company, target_role, name = st.session_state.company, st.session_state.role, st.session_state.student
-        total = len(QUESTIONS)
-        score = sum(1 for q in QUESTIONS if ans.get(q["id"]) == q["correct_answer"])
-        pct = score / total * 100
-        st.markdown(f"**Student:** {name} &nbsp; | &nbsp; **Target:** {target_company} — {target_role}")
-        a,b,c = st.columns(3)
-        a.metric("Overall score", f"{pct:.1f}%")
-        b.metric("Correct answers", f"{score}/{total}")
-        b2 = sum(1 for q in QUESTIONS if q["difficulty"] == "Beginner" and ans.get(q["id"]) == q["correct_answer"])
-        c.metric("Questions assessed", total)
+def calculate_report(answers):
+    total = len(QUESTIONS)
+    score = sum(1 for q in QUESTIONS if answers.get(q['id']) == q['correct_answer'])
+    pct = score / total * 100 if total else 0
+    rows = []
+    for domain in domains:
+        qs = [q for q in QUESTIONS if q['domain'] == domain]
+        correct = sum(1 for q in qs if answers.get(q['id']) == q['correct_answer'])
+        rows.append({'Domain':domain,'Score':round(correct/len(qs)*100,1),'Correct':f'{correct}/{len(qs)}'})
+    return score, pct, rows
+
+def dashboard():
+    st.markdown(f'<div class="welcome"><h1>Welcome back, {st.session_state.student}!</h1><p>Here is where your placement readiness stands today. Build your skills, measure your progress, and prepare with direction.</p></div>', unsafe_allow_html=True)
+    if st.session_state.submitted:
+        score,pct,rows = calculate_report(st.session_state.answers)
+        gap_count = sum(1 for r in rows if r['Score'] < 60)
+        cards = [('READINESS SCORE',f'{pct:.0f}/100',f'{score}/{len(QUESTIONS)} questions correct','linear-gradient(120deg,#e3ecff,#d9e5ff)'),('RESUME MATCH','—','Resume analysis is a planned module','linear-gradient(120deg,#ddf8f2,#d4f3ee)'),('SKILL GAPS',str(gap_count),'Domains below the 60% practice benchmark','linear-gradient(120deg,#fff0f2,#ffe3eb)')]
+    else:
         rows=[]
-        for d in domains:
-            dq=[q for q in QUESTIONS if q["domain"]==d]
-            got=sum(1 for q in dq if ans.get(q["id"])==q["correct_answer"])
-            rows.append({"Domain":d,"Score":round(got/len(dq)*100,1),"Correct":f"{got}/{len(dq)}"})
-        df=pd.DataFrame(rows)
-        st.markdown("#### Domain-wise performance")
-        st.dataframe(df, use_container_width=True, hide_index=True)
-        st.bar_chart(df.set_index("Domain")["Score"])
-        req=COMPANIES[target_company][target_role]
-        gap=[]
-        for r in rows:
-            target=req["domain_targets"].get(r["Domain"],60)
-            delta=round(target-r["Score"],1)
-            gap.append({"Domain":r["Domain"],"Student score":r["Score"],"Illustrative target":target,"Gap":max(delta,0),"Status":"Priority" if delta>=20 else ("Improve" if delta>0 else "On track")})
-        gdf=pd.DataFrame(gap)
-        st.markdown(f"#### Comparison with {target_company} role profile")
-        st.dataframe(gdf, use_container_width=True, hide_index=True)
-        priorities=gdf[gdf["Gap"]>0].sort_values("Gap",ascending=False)
-        st.markdown("#### CareerPilot agent recommendations")
-        if priorities.empty:
-            st.success("The assessed domains meet or exceed the illustrative profile thresholds. Continue with advanced practice and role-specific preparation.")
-        else:
-            for _,r in priorities.head(4).iterrows():
-                st.write(f"**{r['Domain']} — {r['Status']}**: Current {r['Student score']}%, illustrative target {r['Illustrative target']}%. Prioritize focused practice, then retake a fresh assessment.")
-        st.caption("Scoring and threshold comparison are deterministic and explainable. Recommendations are rule-generated in this MVP; LLM-based agent reasoning and adaptive planning are planned integration work.")
-with tab3:
-    st.subheader("Company requirements API")
-    st.write("Select a company and role to inspect the structured response that the backend API will expose.")
-    co=st.selectbox("Company",list(COMPANIES.keys()),key="api_company")
-    ro=st.selectbox("Role",list(COMPANIES[co].keys()),key="api_role")
-    record=COMPANIES[co][ro]
-    payload={"company":co,"role":ro,**record}
-    st.json(payload, expanded=True)
-    st.download_button("Download API response (JSON)",json.dumps(payload,indent=2),file_name=f"{co.lower()}_{ro.lower().replace(' ','_')}_requirements.json",mime="application/json")
-    st.caption("This is a prototype requirements dataset, not an official company API or a guarantee of universal hiring criteria. Profiles must be validated against current job postings.")
-with tab4:
-    st.subheader("System architecture")
-    st.code("""Student
-  |
-  v
-CareerPilot Web UI
-  |
-  +--> Assessment Module --> Question Bank --> Evaluation Engine
-  |
-  +--> Company/Role Selector --> Company Requirements API --> Requirements DB
-  |
-  v
-Career Readiness Orchestrator (AI Agent)
-  |
-  +--> Skill Gap Analysis Tool
-  +--> Recommendation Tool
-  +--> Progress Tracking Tool (next phase)
-  |
-  v
-Personalized Career Readiness Report""", language="text")
-    st.markdown("**Implemented in this review MVP:** question bank, assessment UI, deterministic scoring, domain report, company/role JSON profiles, rule-based gap analysis and recommendations.")
-    st.markdown("**Next development:** persistent student accounts/results, coding-question execution in a sandbox, live job-description ingestion, verified role profiles, LLM/LangGraph tool orchestration, progress tracking and production deployment.")
-    st.warning("The current assessment is a review prototype with 40 MCQs. It is not a validated psychometric or hiring test.")
-st.divider()
-st.caption("CareerPilot • Final-year project progress prototype")
+        cards=[('READINESS SCORE','—','Complete the assessment to calculate','linear-gradient(120deg,#e3ecff,#d9e5ff)'),('RESUME MATCH','—','Resume analysis is a planned module','linear-gradient(120deg,#ddf8f2,#d4f3ee)'),('SKILL GAPS','—','Complete an assessment to identify gaps','linear-gradient(120deg,#fff0f2,#ffe3eb)')]
+    cols=st.columns(3)
+    for col,(label,value,help_text,bg) in zip(cols,cards):
+        with col: st.markdown(f'<div class="metric-card" style="background:{bg}"><div class="metric-label">{label}</div><div class="metric-value">{value}</div><div class="metric-help">{help_text}</div></div>',unsafe_allow_html=True)
+    left,right=st.columns([1.55,1])
+    with left:
+        st.markdown('<div class="card"><h3>📊 Skill readiness overview</h3><div class="muted">Your assessed strengths and improvement areas</div></div>',unsafe_allow_html=True)
+        if rows:
+            df=pd.DataFrame(rows); st.bar_chart(df.set_index('Domain')['Score'],height=270,color='#4267e8'); st.dataframe(df,use_container_width=True,hide_index=True)
+        else: st.info('Your domain-wise skill chart will appear here after you complete the 40-question assessment.')
+    with right:
+        st.markdown('<div class="card"><h3>🧭 Your next steps</h3><div class="muted">A focused path to placement readiness</div><br><span class="pill">Start here</span><br><br><b>1. Complete technical assessment</b><br><span class="muted">Evaluate eight core computer-science domains.</span><br><br><b>2. Review skill gaps</b><br><span class="muted">Compare your scores with a selected company-role profile.</span><br><br><b>3. Follow recommendations</b><br><span class="muted">Prioritize weaker domains and retake assessments.</span></div><div class="card"><h3>🚀 Project modules</h3><div class="muted">Current review build</div><br>✅ Student assessment<br>✅ Automatic evaluation<br>✅ Skill-gap comparison<br>🛠 Resume analysis — planned<br>🛠 Mock interviews — planned<br>🛠 Progress tracking — planned</div>',unsafe_allow_html=True)
+
+def assessment():
+    st.markdown('<div class="welcome"><h1>Student Assessment</h1><p>Evaluate your technical readiness across eight core CS domains.</p></div>',unsafe_allow_html=True)
+    c1,c2,c3=st.columns(3)
+    student=c1.text_input('Student name',value=st.session_state.student)
+    company=c2.selectbox('Target company',list(COMPANIES),index=list(COMPANIES).index(st.session_state.company))
+    roles=list(COMPANIES[company]); role=c3.selectbox('Target role',roles,index=roles.index(st.session_state.role) if st.session_state.role in roles else 0)
+    st.info(f'Review assessment: {len(QUESTIONS)} MCQs · 8 domains · 1 mark each · No negative marking.')
+    with st.form('assessment_form'):
+        for domain in domains:
+            st.markdown(f'### {domain}')
+            for q in [x for x in QUESTIONS if x['domain']==domain]:
+                st.markdown(f"**{q['id']}. [{q['difficulty']}] {q['question']}**")
+                opts=['— Select an answer —']+q['options']; old=st.session_state.answers.get(q['id'],'— Select an answer —')
+                st.selectbox('Choose one',opts,index=opts.index(old) if old in opts else 0,key=f"ans_{q['id']}",label_visibility='collapsed')
+        submitted=st.form_submit_button('Submit assessment',type='primary',use_container_width=True)
+    if submitted:
+        st.session_state.answers={q['id']:st.session_state.get(f"ans_{q['id']}",'— Select an answer —') for q in QUESTIONS}
+        st.session_state.submitted=True; st.session_state.student=student.strip() or 'Student'; st.session_state.company=company; st.session_state.role=role
+        st.success('Assessment submitted. Open Results & Skill Gaps to view your report.')
+
+def results():
+    st.markdown('<div class="welcome"><h1>Results & Skill Gaps</h1><p>Understand your performance against your selected company-role profile.</p></div>',unsafe_allow_html=True)
+    if not st.session_state.submitted:
+        st.warning('No assessment has been submitted in this session yet.')
+        if st.button('Load sample result for project demonstration'):
+            st.session_state.answers={q['id']:(q['correct_answer'] if i%3 else q['options'][0]) for i,q in enumerate(QUESTIONS)}
+            st.session_state.submitted=True; st.session_state.student='Demo Student'; st.rerun()
+        return
+    score,pct,rows=calculate_report(st.session_state.answers)
+    st.markdown(f"**Student:** {st.session_state.student} &nbsp; · &nbsp; **Target:** {st.session_state.company} — {st.session_state.role}")
+    a,b,c=st.columns(3); a.metric('Readiness score',f'{pct:.1f}/100'); b.metric('Correct answers',f'{score}/{len(QUESTIONS)}'); c.metric('Domains assessed',len(domains))
+    df=pd.DataFrame(rows); st.markdown('<div class="card"><h3>Domain-wise performance</h3><div class="muted">Scores are calculated from submitted answers.</div></div>',unsafe_allow_html=True)
+    st.bar_chart(df.set_index('Domain')['Score'],color='#4267e8'); st.dataframe(df,use_container_width=True,hide_index=True)
+    req=COMPANIES[st.session_state.company][st.session_state.role]; gap_rows=[]
+    for row in rows:
+        target=req['domain_targets'].get(row['Domain'],60); diff=round(target-row['Score'],1)
+        gap_rows.append({'Domain':row['Domain'],'Student score':row['Score'],'Illustrative target':target,'Gap':max(diff,0),'Status':'Priority' if diff>=20 else ('Improve' if diff>0 else 'On track')})
+    gap_df=pd.DataFrame(gap_rows); st.markdown(f"### Comparison with {st.session_state.company} role profile"); st.dataframe(gap_df,use_container_width=True,hide_index=True)
+    priorities=gap_df[gap_df['Gap']>0].sort_values('Gap',ascending=False); st.markdown('### CareerPilot recommendations')
+    if priorities.empty: st.success('Your scores meet or exceed this illustrative profile’s domain thresholds. Continue with advanced practice.')
+    else:
+        for _,r in priorities.head(5).iterrows(): st.write(f"**{r['Domain']} — {r['Status']}**: Current {r['Student score']}%, illustrative target {r['Illustrative target']}%. Prioritize focused practice, then retake a fresh assessment.")
+    st.caption('Scoring and gap calculations are deterministic and explainable. Recommendations in this review MVP are rule-generated; LLM-based agent orchestration is planned.')
+
+def panel_members():
+    st.markdown('<div class="welcome"><h1>Panel Members</h1><p>Technical overview for project evaluation — architecture, API design, and implementation status.</p></div>',unsafe_allow_html=True)
+    st.info('The API technical design is kept in this panel-only section and in the source code, not in the student dashboard.')
+    st.markdown('### System architecture')
+    st.code('''Student\n  |\n  v\nCareerPilot Web UI\n  |\n  +--> Assessment Module --> Question Bank --> Evaluation Engine\n  |\n  +--> Company/Role Selector --> Company Requirements API --> Requirements JSON / DB (future)\n  |\n  v\nCareer Readiness Orchestrator (planned AI agent)\n  |\n  +--> Skill Gap Analysis Tool\n  +--> Recommendation Tool\n  +--> Progress Tracking Tool (planned)\n  |\n  v\nPersonalized Career Readiness Report''',language='text')
+    st.markdown('### API design for technical review')
+    st.code('''GET /api/companies\nGET /api/companies/{company}/roles\nGET /api/requirements?company=Google&role=Software%20Development%20Engineer\n\nExample JSON response:\n{\n  "company": "Google",\n  "role": "Software Development Engineer",\n  "domain_targets": {\n    "Data Structures & Algorithms": 85,\n    "Operating Systems": 70,\n    "DBMS": 70\n  }\n}''',language='text')
+    st.success('Implemented: 40-question bank, assessment UI, deterministic scoring, domain-wise report, company-role JSON profiles, rule-based skill-gap analysis.')
+    st.warning('Planned: production REST API endpoints, database persistence, verified live job-description ingestion, LLM/LangGraph tool orchestration, coding sandbox, authentication and progress tracking.')
+    st.caption('Company profiles are illustrative project data, not official company APIs or guaranteed hiring criteria.')
+
+if page=='Dashboard': dashboard()
+elif page=='Student Assessment': assessment()
+elif page=='Results & Skill Gaps': results()
+else: panel_members()
+st.markdown('<div style="text-align:center;color:#8792aa;font-size:.78rem;padding:20px 0">CareerPilot · Placement Readiness Agent · Review prototype</div>',unsafe_allow_html=True)
