@@ -1,0 +1,842 @@
+[
+  {
+    "id": "PF01",
+    "domain": "Programming Fundamentals",
+    "topic": "Variables and Data Types",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "Which C++ data type is commonly used to store a single character?",
+    "options": [
+      "int",
+      "char",
+      "float",
+      "bool"
+    ],
+    "correct_answer": "char",
+    "explanation": "A char stores a single character such as 'A'.",
+    "skill_tags": [
+      "cpp",
+      "variables_and_data_types"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "PF02",
+    "domain": "Programming Fundamentals",
+    "topic": "Operators",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "What is the result of the expression 7 % 3 in C++?",
+    "options": [
+      "1",
+      "2",
+      "2.33",
+      "0"
+    ],
+    "correct_answer": "1",
+    "explanation": "The modulo operator returns the remainder; 7 divided by 3 leaves remainder 1.",
+    "skill_tags": [
+      "cpp",
+      "operators"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "PF03",
+    "domain": "Programming Fundamentals",
+    "topic": "Loops",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "Which loop checks its condition before executing the body?",
+    "options": [
+      "do-while",
+      "while",
+      "Both always execute once",
+      "None"
+    ],
+    "correct_answer": "while",
+    "explanation": "A while loop checks its condition before the first iteration.",
+    "skill_tags": [
+      "cpp",
+      "loops"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "PF04",
+    "domain": "Programming Fundamentals",
+    "topic": "Functions",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "What does a function's return type specify?",
+    "options": [
+      "The number of parameters",
+      "The type of value returned by the function",
+      "The function's memory address",
+      "The number of times it runs"
+    ],
+    "correct_answer": "The type of value returned by the function",
+    "explanation": "The return type describes the value a function sends back to its caller.",
+    "skill_tags": [
+      "general",
+      "functions"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "PF05",
+    "domain": "Programming Fundamentals",
+    "topic": "Pointers",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "What does the address-of operator & return when applied to a variable?",
+    "options": [
+      "The variable's value",
+      "The variable's memory address",
+      "The variable's data type",
+      "A null pointer"
+    ],
+    "correct_answer": "The variable's memory address",
+    "explanation": "In C++, &variable evaluates to the address of that variable.",
+    "skill_tags": [
+      "cpp",
+      "pointers"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "DS01",
+    "domain": "Data Structures",
+    "topic": "Arrays",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "What is the time complexity of accessing an array element by index?",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)"
+    ],
+    "correct_answer": "O(1)",
+    "explanation": "Array indexing uses direct address calculation and is constant time.",
+    "skill_tags": [
+      "general",
+      "arrays"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "DS02",
+    "domain": "Data Structures",
+    "topic": "Linked Lists",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "In a singly linked list, each node typically stores:",
+    "options": [
+      "Only data",
+      "Data and a pointer to the next node",
+      "Two previous pointers",
+      "An array index only"
+    ],
+    "correct_answer": "Data and a pointer to the next node",
+    "explanation": "A singly linked-list node links forward to the next node.",
+    "skill_tags": [
+      "general",
+      "linked_lists"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "DS03",
+    "domain": "Data Structures",
+    "topic": "Stacks",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "Which principle does a stack follow?",
+    "options": [
+      "FIFO",
+      "LIFO",
+      "Random access",
+      "Priority only"
+    ],
+    "correct_answer": "LIFO",
+    "explanation": "A stack follows Last In, First Out.",
+    "skill_tags": [
+      "general",
+      "stacks"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "DS04",
+    "domain": "Data Structures",
+    "topic": "Queues",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "Which operation removes an item from a standard queue?",
+    "options": [
+      "Push",
+      "Pop",
+      "Dequeue",
+      "Peek"
+    ],
+    "correct_answer": "Dequeue",
+    "explanation": "Dequeue removes the front element of a queue.",
+    "skill_tags": [
+      "general",
+      "queues"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "DS05",
+    "domain": "Data Structures",
+    "topic": "Trees",
+    "difficulty": "Advanced",
+    "type": "mcq",
+    "question": "In a binary search tree, values in the left subtree of a node are generally:",
+    "options": [
+      "Greater than the node's value",
+      "Less than the node's value",
+      "Always equal",
+      "Unordered"
+    ],
+    "correct_answer": "Less than the node's value",
+    "explanation": "The BST ordering property places smaller values to the left and larger values to the right.",
+    "skill_tags": [
+      "general",
+      "trees"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "AL01",
+    "domain": "Algorithms",
+    "topic": "Searching",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "Binary search requires the input collection to be:",
+    "options": [
+      "Sorted",
+      "A linked list only",
+      "Randomly shuffled",
+      "All positive"
+    ],
+    "correct_answer": "Sorted",
+    "explanation": "Binary search repeatedly halves the search interval, which requires sorted data.",
+    "skill_tags": [
+      "general",
+      "searching"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "AL02",
+    "domain": "Algorithms",
+    "topic": "Sorting",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "Which algorithm repeatedly compares adjacent elements and swaps them if needed?",
+    "options": [
+      "Merge sort",
+      "Bubble sort",
+      "Binary search",
+      "DFS"
+    ],
+    "correct_answer": "Bubble sort",
+    "explanation": "Bubble sort compares adjacent elements over repeated passes.",
+    "skill_tags": [
+      "general",
+      "sorting"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "AL03",
+    "domain": "Algorithms",
+    "topic": "Complexity",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "What is the time complexity of merge sort in the average case?",
+    "options": [
+      "O(n)",
+      "O(log n)",
+      "O(n log n)",
+      "O(n^2)"
+    ],
+    "correct_answer": "O(n log n)",
+    "explanation": "Merge sort divides the input and merges sorted halves in O(n log n) time.",
+    "skill_tags": [
+      "general",
+      "complexity"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "AL04",
+    "domain": "Algorithms",
+    "topic": "Recursion",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "What is essential to prevent infinite recursion?",
+    "options": [
+      "A global variable",
+      "A base case",
+      "A nested loop",
+      "A pointer"
+    ],
+    "correct_answer": "A base case",
+    "explanation": "A base case terminates recursive calls.",
+    "skill_tags": [
+      "general",
+      "recursion"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "AL05",
+    "domain": "Algorithms",
+    "topic": "Dynamic Programming",
+    "difficulty": "Advanced",
+    "type": "mcq",
+    "question": "Dynamic programming is especially useful when a problem has:",
+    "options": [
+      "Only sorted input",
+      "Overlapping subproblems and optimal substructure",
+      "No repeated states",
+      "Constant input size"
+    ],
+    "correct_answer": "Overlapping subproblems and optimal substructure",
+    "explanation": "DP stores solutions to repeated subproblems and uses problem structure to build answers.",
+    "skill_tags": [
+      "general",
+      "dynamic_programming"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "DB01",
+    "domain": "DBMS",
+    "topic": "SQL",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "Which SQL command retrieves rows from a table?",
+    "options": [
+      "GET",
+      "FETCH TABLE",
+      "SELECT",
+      "OPEN"
+    ],
+    "correct_answer": "SELECT",
+    "explanation": "SELECT is used to retrieve data from database tables.",
+    "skill_tags": [
+      "sql",
+      "sql"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "DB02",
+    "domain": "DBMS",
+    "topic": "Keys",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "What is the main purpose of a primary key?",
+    "options": [
+      "Allow duplicate rows",
+      "Uniquely identify each row",
+      "Encrypt a table",
+      "Sort every query"
+    ],
+    "correct_answer": "Uniquely identify each row",
+    "explanation": "A primary key uniquely identifies each record and cannot be NULL.",
+    "skill_tags": [
+      "sql",
+      "keys"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "DB03",
+    "domain": "DBMS",
+    "topic": "Normalization",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "The main goal of normalization is to:",
+    "options": [
+      "Increase duplicate data",
+      "Reduce redundancy and update anomalies",
+      "Remove all indexes",
+      "Encrypt columns"
+    ],
+    "correct_answer": "Reduce redundancy and update anomalies",
+    "explanation": "Normalization structures relations to reduce redundancy and anomalies.",
+    "skill_tags": [
+      "general",
+      "normalization"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "DB04",
+    "domain": "DBMS",
+    "topic": "Transactions",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "What does ACID's 'A' stand for?",
+    "options": [
+      "Availability",
+      "Atomicity",
+      "Accuracy",
+      "Authorization"
+    ],
+    "correct_answer": "Atomicity",
+    "explanation": "Atomicity means a transaction is all-or-nothing.",
+    "skill_tags": [
+      "general",
+      "transactions"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "DB05",
+    "domain": "DBMS",
+    "topic": "Joins",
+    "difficulty": "Advanced",
+    "type": "mcq",
+    "question": "Which join returns only rows with matching values in both tables?",
+    "options": [
+      "LEFT JOIN",
+      "FULL OUTER JOIN",
+      "INNER JOIN",
+      "CROSS JOIN"
+    ],
+    "correct_answer": "INNER JOIN",
+    "explanation": "INNER JOIN returns rows satisfying the join condition in both tables.",
+    "skill_tags": [
+      "sql",
+      "joins"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "OS01",
+    "domain": "Operating Systems",
+    "topic": "Processes",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "A program in execution is called a:",
+    "options": [
+      "File",
+      "Process",
+      "Compiler",
+      "Thread pool"
+    ],
+    "correct_answer": "Process",
+    "explanation": "A process is an instance of a program in execution.",
+    "skill_tags": [
+      "general",
+      "processes"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "OS02",
+    "domain": "Operating Systems",
+    "topic": "Threads",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "Threads within the same process commonly share:",
+    "options": [
+      "Separate executable files",
+      "Process address space",
+      "Different operating systems",
+      "No resources"
+    ],
+    "correct_answer": "Process address space",
+    "explanation": "Threads share process resources such as address space and open files.",
+    "skill_tags": [
+      "general",
+      "threads"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "OS03",
+    "domain": "Operating Systems",
+    "topic": "Scheduling",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "Which scheduling algorithm assigns each process a fixed time slice in rotation?",
+    "options": [
+      "FCFS",
+      "SJF",
+      "Round Robin",
+      "Priority only"
+    ],
+    "correct_answer": "Round Robin",
+    "explanation": "Round Robin cycles through ready processes using a time quantum.",
+    "skill_tags": [
+      "general",
+      "scheduling"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "OS04",
+    "domain": "Operating Systems",
+    "topic": "Deadlocks",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "Which is one of the necessary Coffman conditions for deadlock?",
+    "options": [
+      "Circular wait",
+      "Compilation",
+      "Paging",
+      "Caching"
+    ],
+    "correct_answer": "Circular wait",
+    "explanation": "Circular wait is one of the four necessary deadlock conditions.",
+    "skill_tags": [
+      "general",
+      "deadlocks"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "OS05",
+    "domain": "Operating Systems",
+    "topic": "Memory",
+    "difficulty": "Advanced",
+    "type": "mcq",
+    "question": "What is a page fault?",
+    "options": [
+      "A CPU overheating event",
+      "An access to a page not currently mapped in physical memory",
+      "A failed SQL query",
+      "A process exit"
+    ],
+    "correct_answer": "An access to a page not currently mapped in physical memory",
+    "explanation": "A page fault occurs when a referenced virtual-memory page is not currently resident/mapped as required.",
+    "skill_tags": [
+      "general",
+      "memory"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "CN01",
+    "domain": "Computer Networks",
+    "topic": "OSI",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "How many layers are in the OSI reference model?",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "correct_answer": "7",
+    "explanation": "The OSI model has seven conceptual layers.",
+    "skill_tags": [
+      "general",
+      "osi"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "CN02",
+    "domain": "Computer Networks",
+    "topic": "Protocols",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "Which protocol is commonly used for secure web browsing?",
+    "options": [
+      "FTP",
+      "HTTP",
+      "HTTPS",
+      "Telnet"
+    ],
+    "correct_answer": "HTTPS",
+    "explanation": "HTTPS uses HTTP over TLS to protect communication.",
+    "skill_tags": [
+      "general",
+      "protocols"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "CN03",
+    "domain": "Computer Networks",
+    "topic": "DNS",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "What is the primary purpose of DNS?",
+    "options": [
+      "Encrypt files",
+      "Translate domain names to IP addresses",
+      "Assign MAC addresses",
+      "Compress web pages"
+    ],
+    "correct_answer": "Translate domain names to IP addresses",
+    "explanation": "DNS resolves human-readable domain names to IP addresses and related records.",
+    "skill_tags": [
+      "general",
+      "dns"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "CN04",
+    "domain": "Computer Networks",
+    "topic": "Transport",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "Which transport protocol provides reliable, ordered byte-stream delivery?",
+    "options": [
+      "UDP",
+      "IP",
+      "TCP",
+      "ARP"
+    ],
+    "correct_answer": "TCP",
+    "explanation": "TCP provides reliable, ordered delivery using acknowledgements and retransmission.",
+    "skill_tags": [
+      "general",
+      "transport"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "CN05",
+    "domain": "Computer Networks",
+    "topic": "Addressing",
+    "difficulty": "Advanced",
+    "type": "mcq",
+    "question": "What does a subnet mask help determine?",
+    "options": [
+      "The browser version",
+      "The network and host portions of an IP address",
+      "The encryption key",
+      "The DNS provider"
+    ],
+    "correct_answer": "The network and host portions of an IP address",
+    "explanation": "A subnet mask identifies which bits represent the network prefix and host portion.",
+    "skill_tags": [
+      "general",
+      "addressing"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "OO01",
+    "domain": "Object-Oriented Programming",
+    "topic": "Encapsulation",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "Encapsulation primarily means:",
+    "options": [
+      "Writing only loops",
+      "Bundling data with methods and controlling access",
+      "Using multiple CPUs",
+      "Converting code to SQL"
+    ],
+    "correct_answer": "Bundling data with methods and controlling access",
+    "explanation": "Encapsulation combines state and behavior while controlling access to internal state.",
+    "skill_tags": [
+      "general",
+      "encapsulation"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "OO02",
+    "domain": "Object-Oriented Programming",
+    "topic": "Inheritance",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "Inheritance allows a class to:",
+    "options": [
+      "Delete an object",
+      "Derive properties and behavior from another class",
+      "Run without memory",
+      "Become a database"
+    ],
+    "correct_answer": "Derive properties and behavior from another class",
+    "explanation": "Inheritance lets a derived class reuse and extend a base class.",
+    "skill_tags": [
+      "general",
+      "inheritance"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "OO03",
+    "domain": "Object-Oriented Programming",
+    "topic": "Polymorphism",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "Runtime polymorphism in C++ is commonly achieved using:",
+    "options": [
+      "Macros",
+      "Virtual functions",
+      "Namespaces",
+      "Constructors only"
+    ],
+    "correct_answer": "Virtual functions",
+    "explanation": "Virtual functions enable dynamic dispatch through base-class interfaces.",
+    "skill_tags": [
+      "cpp",
+      "polymorphism"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "OO04",
+    "domain": "Object-Oriented Programming",
+    "topic": "Abstraction",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "Abstraction focuses on:",
+    "options": [
+      "Exposing every implementation detail",
+      "Exposing essential behavior while hiding implementation details",
+      "Duplicating all methods",
+      "Removing interfaces"
+    ],
+    "correct_answer": "Exposing essential behavior while hiding implementation details",
+    "explanation": "Abstraction presents essential operations without exposing unnecessary implementation detail.",
+    "skill_tags": [
+      "general",
+      "abstraction"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "OO05",
+    "domain": "Object-Oriented Programming",
+    "topic": "Constructors",
+    "difficulty": "Advanced",
+    "type": "mcq",
+    "question": "When is a C++ copy constructor typically invoked?",
+    "options": [
+      "Whenever any function returns int",
+      "When an object is initialized from another object of the same class",
+      "Only when deleting an object",
+      "Only during inheritance"
+    ],
+    "correct_answer": "When an object is initialized from another object of the same class",
+    "explanation": "A copy constructor initializes a new object using an existing object of the same class.",
+    "skill_tags": [
+      "cpp",
+      "constructors"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "PS01",
+    "domain": "Problem Solving",
+    "topic": "Logic",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "If all roses are flowers and some flowers fade quickly, which conclusion is definitely true?",
+    "options": [
+      "All roses fade quickly",
+      "No roses fade quickly",
+      "All roses are flowers",
+      "All flowers are roses"
+    ],
+    "correct_answer": "All roses are flowers",
+    "explanation": "Only the first statement is guaranteed by the premise.",
+    "skill_tags": [
+      "general",
+      "logic"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "PS02",
+    "domain": "Problem Solving",
+    "topic": "Patterns",
+    "difficulty": "Beginner",
+    "type": "mcq",
+    "question": "What is the next number in the sequence 2, 4, 8, 16, ...?",
+    "options": [
+      "18",
+      "24",
+      "30",
+      "32"
+    ],
+    "correct_answer": "32",
+    "explanation": "Each term is multiplied by 2.",
+    "skill_tags": [
+      "general",
+      "patterns"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "PS03",
+    "domain": "Problem Solving",
+    "topic": "Analysis",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "A task takes 6 hours for 3 people working at the same constant rate. How long would 6 people take?",
+    "options": [
+      "2 hours",
+      "3 hours",
+      "6 hours",
+      "12 hours"
+    ],
+    "correct_answer": "3 hours",
+    "explanation": "Doubling the workforce halves the time under the stated constant-rate assumption.",
+    "skill_tags": [
+      "general",
+      "analysis"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "PS04",
+    "domain": "Problem Solving",
+    "topic": "Optimization",
+    "difficulty": "Intermediate",
+    "type": "mcq",
+    "question": "What is the main purpose of analyzing algorithmic complexity?",
+    "options": [
+      "Measure code formatting",
+      "Estimate resource growth as input size increases",
+      "Count comments",
+      "Determine variable names"
+    ],
+    "correct_answer": "Estimate resource growth as input size increases",
+    "explanation": "Complexity analysis describes how time or space requirements grow with input size.",
+    "skill_tags": [
+      "general",
+      "optimization"
+    ],
+    "marks": 1
+  },
+  {
+    "id": "PS05",
+    "domain": "Problem Solving",
+    "topic": "Edge Cases",
+    "difficulty": "Advanced",
+    "type": "mcq",
+    "question": "Why should an algorithm be tested with empty input when applicable?",
+    "options": [
+      "To increase code length",
+      "To verify behavior at a boundary case",
+      "To guarantee O(1) time",
+      "To avoid all loops"
+    ],
+    "correct_answer": "To verify behavior at a boundary case",
+    "explanation": "Empty input is a boundary case that can reveal incorrect assumptions and errors.",
+    "skill_tags": [
+      "general",
+      "edge_cases"
+    ],
+    "marks": 1
+  }
+]

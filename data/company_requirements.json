@@ -1,0 +1,166 @@
+{
+  "Google": {
+    "Software Development Engineer": {
+      "source_note": "Prototype profile based on recurring themes in publicly available software engineering job descriptions and interview preparation material; validate against the specific live vacancy.",
+      "essential_skills": [
+        "Programming",
+        "Data Structures",
+        "Algorithms",
+        "Problem Solving",
+        "Software Engineering Fundamentals"
+      ],
+      "core_subjects": [
+        "Operating Systems",
+        "Computer Networks",
+        "DBMS",
+        "Object-Oriented Programming"
+      ],
+      "preferred_skills": [
+        "Distributed Systems",
+        "System Design",
+        "Testing"
+      ],
+      "domain_targets": {
+        "Programming Fundamentals": 75,
+        "Data Structures": 85,
+        "Algorithms": 85,
+        "DBMS": 70,
+        "Operating Systems": 70,
+        "Computer Networks": 65,
+        "Object-Oriented Programming": 75,
+        "Problem Solving": 85
+      }
+    }
+  },
+  "Microsoft": {
+    "Software Engineer": {
+      "source_note": "Prototype profile based on recurring themes in public software engineering role descriptions; requirements vary by team, level and vacancy.",
+      "essential_skills": [
+        "Programming",
+        "Data Structures",
+        "Algorithms",
+        "Problem Solving",
+        "Software Development"
+      ],
+      "core_subjects": [
+        "Operating Systems",
+        "DBMS",
+        "Computer Networks",
+        "Object-Oriented Programming"
+      ],
+      "preferred_skills": [
+        "Cloud Fundamentals",
+        "System Design",
+        "Testing"
+      ],
+      "domain_targets": {
+        "Programming Fundamentals": 75,
+        "Data Structures": 80,
+        "Algorithms": 80,
+        "DBMS": 70,
+        "Operating Systems": 70,
+        "Computer Networks": 65,
+        "Object-Oriented Programming": 75,
+        "Problem Solving": 80
+      }
+    }
+  },
+  "Amazon": {
+    "Software Development Engineer": {
+      "source_note": "Prototype profile based on recurring themes in public SDE role descriptions and Leadership Principles context; verify against the exact job posting.",
+      "essential_skills": [
+        "Programming",
+        "Data Structures",
+        "Algorithms",
+        "Problem Solving",
+        "Ownership"
+      ],
+      "core_subjects": [
+        "Operating Systems",
+        "DBMS",
+        "Computer Networks",
+        "Object-Oriented Programming"
+      ],
+      "preferred_skills": [
+        "Distributed Systems",
+        "Cloud Computing",
+        "System Design"
+      ],
+      "domain_targets": {
+        "Programming Fundamentals": 75,
+        "Data Structures": 85,
+        "Algorithms": 85,
+        "DBMS": 70,
+        "Operating Systems": 70,
+        "Computer Networks": 65,
+        "Object-Oriented Programming": 70,
+        "Problem Solving": 85
+      }
+    }
+  },
+  "TCS": {
+    "Software Engineer": {
+      "source_note": "Illustrative entry-level software engineering profile; exact requirements depend on the TCS hiring track and current role notice.",
+      "essential_skills": [
+        "Programming Fundamentals",
+        "Problem Solving",
+        "SQL",
+        "Communication"
+      ],
+      "core_subjects": [
+        "Data Structures",
+        "DBMS",
+        "Object-Oriented Programming",
+        "Computer Networks"
+      ],
+      "preferred_skills": [
+        "Java",
+        "Python",
+        "Cloud Fundamentals"
+      ],
+      "domain_targets": {
+        "Programming Fundamentals": 65,
+        "Data Structures": 65,
+        "Algorithms": 60,
+        "DBMS": 65,
+        "Operating Systems": 55,
+        "Computer Networks": 55,
+        "Object-Oriented Programming": 65,
+        "Problem Solving": 70
+      }
+    }
+  },
+  "Infosys": {
+    "Systems Engineer": {
+      "source_note": "Illustrative entry-level systems engineering profile; confirm against the current hiring program and role description.",
+      "essential_skills": [
+        "Programming Fundamentals",
+        "Problem Solving",
+        "Communication",
+        "Adaptability"
+      ],
+      "core_subjects": [
+        "Data Structures",
+        "DBMS",
+        "Operating Systems",
+        "Object-Oriented Programming"
+      ],
+      "preferred_skills": [
+        "Java",
+        "Python",
+        "SQL",
+        "Cloud Fundamentals"
+      ],
+      "domain_targets": {
+        "Programming Fundamentals": 65,
+        "Data Structures": 60,
+        "Algorithms": 60,
+        "DBMS": 60,
+        "Operating Systems": 55,
+        "Computer Networks": 50,
+        "Object-Oriented Programming": 60,
+        "Problem Solving": 70
+      }
+    }
+  }
+}
